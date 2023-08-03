@@ -1,0 +1,81 @@
+<div *ngIf="banner" class="story-prev">
+    <div class="story-sidebar uk-animation-slide-left-medium">
+        <div class="md:flex justify-between items-center py-2 hidden">
+            <h3 class="text-2xl font-semibold"> Todo los Banners </h3>
+            <!-- <a href="#" class="text-blue-600"> Setting</a> -->
+        </div>
+
+        <div class="story-sidebar-scrollbar" data-simplebar>
+            <!-- CREAR UNA HISTORIA -->
+            <!-- <h3 class="text-lg font-medium"> Your Story </h3> -->
+
+            <a class="flex space-x-4 items-center hover:bg-gray-100 md:my-2 py-2 rounded-lg hover:text-gray-700"
+                href="#" uk-toggle="target: #upload-banner-modal">
+                <svg class="w-12 h-12 p-3 bg-gray-200 rounded-full text-blue-500 ml-1" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                <div class="flex-1">
+                    <div class="text-lg font-semibold"> Publica un Banner </div>
+                    <div class="text-sm -mt-0.5"> Comparte una imagen. </div>
+                </div>
+            </a>
+
+            <h3 class="text-lg font-medium lg:mt-3 mt-1"> Ultimos Banners </h3>
+
+            <div class="story-users-list" uk-switcher="connect: #story_slider ; toggle: > * ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium ">
+                <div>
+                    <a href="#">
+                        <div class="story-media">
+                            <div *ngIf="banner.user.avatar && banner.user.avatar != 'default.png'; then showAvatarStory else showDefaultStory">
+                            </div>
+                            <ng-template #showAvatarStory>
+                                <img src="{{url}}user/avatar/{{banner.user.avatar}}" alt="">
+                            </ng-template>
+                            <ng-template #showDefaultStory>
+                                <img src="assets/images/avatars/avatar-1.jpg" alt="">
+                            </ng-template>
+                        </div>
+                        <div class="story-text">
+                            <div class="story-username">  {{ banner.user.name }} {{ banner.user.surname }}</div>
+                            <p> <span class="story-time"> 4Mn ago</span> </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <h3 class="text-lg font-medium lg:mt-3 mt-1 mb-4"> Información Adicional</h3>
+
+            <p *ngIf="banner.company != null" class="mt-1 mb-1"><strong class="mr-2">Empresa:</strong> {{ banner.company }}</p>
+            <p *ngIf="banner.phone != null" class="mt-1 mb-1"><strong class="mr-2">Télefono:</strong> {{ banner.phone }}</p>
+            <p *ngIf="banner.email != null" class="mt-1 mb-1"><strong class="mr-2">Email:</strong> {{ banner.email }}</p>
+            <p *ngIf="banner.website != null" class="mt-1 mb-1"><strong class="mr-2">webSite:</strong> <a href="{{ banner.website }}" target="_blank">{{ banner.website }}</a> </p>
+        </div>
+    </div>
+
+    <div class="story-content">
+        <ul class="uk-switcher uk-animation-scale-up" id="story_slider">
+            <div>
+                <li class="relative">
+                    <!-- <span uk-switcher-item="previous" class="slider-icon is-left"> </span> -->
+                    <!-- <span uk-switcher-item="next" class="slider-icon is-right"> </span> -->
+
+                    <div uk-lightbox>
+                        <a href="{{url}}banner/file/{{banner.banner}}" data-alt="Image">
+                            <img src="{{url}}banner/file/{{banner.banner}}" class="story-slider-image" data-alt="Image">
+                        </a>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+    <!-- story colose button-->
+    <span class="story-btn-close" uk-toggle="target: body ; cls: story-active"
+        uk-tooltip="title:Cerrar Banners ; pos: left">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </span>
+</div>

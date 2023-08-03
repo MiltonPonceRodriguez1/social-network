@@ -1,0 +1,12 @@
+<div *ngIf="banners && banners.length > 0" class="uk-position-relative uk-visible-toggle uk-light uk-slider uk-slider-container" style="margin-bottom: 2rem;" tabindex="-1" uk-slider="center: true">
+    
+    <ul class="uk-slider-items uk-grid" style="transform: translate3d(-638.75px, 0px, 0px);">
+        <li *ngFor=" let banner of banners" class="uk-width-3-4" tabindex="-1">
+            <img (click)="selectBanner( banner )" src="{{url}}banner/file/{{banner.banner}}" alt="" class="w-full h-60 object-cover rounded-md" href="#create-post" uk-toggle="target: body ; cls: story-active">
+        </li>
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover text-white p-4 uk-icon uk-slidenav-previous uk-slidenav" href="#" uk-slidenav-previous="" uk-slider-item="previous"><svg width="14px" height="24px" viewBox="0 0 14 24" xmlns="http://www.w3.org/2000/svg" data-svg="slidenav-previous"><polyline fill="none" stroke="#000" stroke-width="1.4" points="12.775,1 1.225,12 12.775,23 "></polyline></svg></a>
+    <a id="btnNext" class="uk-position-center-right uk-position-small uk-hidden-hover text-white p-4 uk-icon uk-slidenav-next uk-slidenav" href="#" uk-slidenav-next="" uk-slider-item="next"><svg width="14px" height="24px" viewBox="0 0 14 24" xmlns="http://www.w3.org/2000/svg" data-svg="slidenav-next"><polyline fill="none" stroke="#000" stroke-width="1.4" points="1.225,23 12.775,12 1.225,1 "></polyline></svg></a>
+
+</div>

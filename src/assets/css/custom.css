@@ -1,0 +1,51 @@
+/* ESTILOS AVATAR */
+.header_widgets .is_avatar_dropwdown {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+}
+/* FIN ESTILOS AVATAR */
+
+.publication-image>input {
+    display: none;
+}
+
+.publication-image>label {
+    margin-top: 1rem;
+}
+
+#file-upload-avatar,
+#file-upload-cover,
+#file-upload-banner {
+    cursor: pointer;
+}
+
+.sidebar-icon {
+    font-size: 23px;
+    margin-left: 0.1rem;
+    margin-right: 0.6rem;
+}
+
+.carousel-items-back,
+.carousel-items-next {
+    margin-top: 2.5rem;
+}
+
+
+.responsive-nav ul {
+    overflow-x: unset;
+}
+
+.post-count {
+    margin-right: 10px;
+    font-weight: 700;
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    font-size: 11px;
+    background-color: #e95a5a;
+    border-radius: 50%;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    display: -webkit-box;
+}

@@ -1,0 +1,29 @@
+<!-- CONTENIDO -->
+<div class="spa-content">
+  <div id="wrapper">
+    <!-- Header -->
+    <app-header *ngIf="show" />
+
+    <!-- sidebar -->
+    <app-sidebar *ngIf="show" />
+
+    <router-outlet (activate)="onRouterOutletActivate($event)"></router-outlet>
+  </div>
+
+  <!-- ChatBox -->
+  <app-chat />
+
+  <!-- birthdays modal -->
+  <app-birthdays />
+
+  <!-- Modal New Publication -->
+  <!-- <app-publication-new /> -->
+
+  <!-- Modal New Banner -->
+  <!-- <app-banner-new /> -->
+
+  <!-- Loader -->
+  <ngx-spinner bdColor="white" template="<img src='assets/img/loader.gif' />"></ngx-spinner>
+
+</div>
+<!-- FIN CONTENIDO -->

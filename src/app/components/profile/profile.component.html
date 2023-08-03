@@ -1,0 +1,129 @@
+<div *ngIf="user">
+    <!-- Main Contents -->
+    <div class="main_content">
+        <div class="mcontainer">
+
+            <!-- Profile cover -->
+            <div class="profile user-profile">
+
+                <div class="profiles_banner">
+                    <!-- PORTADA DE USUARIO -->
+                    <div *ngIf="user.cover && user.cover != 'default.png'; else showDefaultCover">
+                        <div uk-lightbox>
+                            <a href="{{url}}user/cover/{{user.cover}}">
+                                <img src="{{url}}user/cover/{{user.cover}}" alt="banner">
+                            </a>
+                        </div>
+                    </div>
+
+                    <ng-template #showDefaultCover>
+                        <img src="assets/images/avatars/profile-cover.jpg" alt="">
+                    </ng-template>
+
+
+                    <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
+                        <!-- <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
+                        <ion-icon name="crop-outline" class="text-xl"></ion-icon>
+                        <span> Crop </span>
+                    </a> -->
+                        <a *ngIf="user.id === identity.id" href="#" uk-toggle="target: #upload-cover-modal" uk-tooltip="title: Sube tu foto de portada; pos: top" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
+                            <ion-icon name="create-outline" class="text-xl"></ion-icon>
+                            <span> Edit </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="profiles_content">
+
+                    <div class="profile_avatar">
+                        <div class="profile_avatar_holder">
+                            
+                            <!-- AVATAR -->
+                            <div *ngIf="user.avatar && user.avatar != 'default.png'; else showDefaultAvatar">
+                                <div uk-lightbox>
+                                    <a href="{{url}}user/avatar/{{user.avatar}}">
+                                        <img src="{{url}}user/avatar/{{user.avatar}}" alt="avatar">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <ng-template #showDefaultAvatar>
+                                <img src="assets/images/avatars/avatar-8.jpg" alt="avatar">
+                            </ng-template>
+
+                        </div>
+                        <div class="user_status status_online" hidden></div>
+                        <div *ngIf="user.id === identity.id" class="icon_change_photo" uk-toggle="target: #upload-avatar-modal" uk-tooltip="title: Sube tu avatar; pos: top">
+                            <span class="icon-feather-camera"></span>
+                        </div>
+                    </div>
+
+                    <div class="profile_info">
+
+                        <h1>{{ user.name }} {{ user.surname }} </h1>
+                        <p class="text-center">@{{ user.nickname }}</p>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
+                    <nav class="responsive-nav pl-3">
+                        <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
+                            <li><a href="#">Empresa</a></li>
+                            <li><a href="#">Archivos adjuntos <span>3</span> </a></li>
+                            <li><a href="#">Contacto </a></li>
+                            <li><a href="#">Website</a></li>
+                            <!-- <li><a href="#">Groups</a></li> -->
+                            <!-- <li><a href="#">Videos</a></li> -->
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+            <div class="uk-switcher lg:mt-8 mt-4" id="timeline-tab">
+
+                <!-- Company  -->
+                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+                    <h2 class="text-xl font-bold"> Empresa: Dokken Company</h2>
+                </div>
+
+                <!-- Files  -->
+                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+
+                    <h2 class="text-xl font-bold"> Archivos adjuntos</h2>
+
+
+                    <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4 mt-3">
+                        <div class="card p-2">
+                            <a href="timeline.html">
+                                <img src="assets/images/avatars/avatar-2.jpg"
+                                    class="h-36 object-cover rounded-md shadow-sm w-full">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center mt-6">
+                        <a href="#"
+                            class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
+                            Load more ..</a>
+                    </div>
+                </div>
+
+                <!-- contact  -->
+                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+                    <h2 class="text-xl font-bold"> Contancto</h2>
+                </div>
+
+                <!-- website  -->
+                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+                    <h2 class="text-xl font-bold"> Website</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal User Upload -->
+<app-user-upload (onNewAvatar)="onNewAvatar($event)" (onNewCover)="onNewCover($event)" />
