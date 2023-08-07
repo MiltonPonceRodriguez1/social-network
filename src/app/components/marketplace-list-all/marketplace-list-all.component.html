@@ -1,99 +1,80 @@
-<div *ngIf="posts && posts.lenght > 0">
+<div *ngIf="posts && posts.length > 0">
+    <div *ngFor="let post of posts">
 
-    <p>marketplace-list-all works!</p>
-</div>
+        <!-- ENTERPRISE PLAN  -->
+        <div *ngIf="post.plan_id === 3">
+            <div class="relative" uk-slider="finite: true">
+                <div class="uk-slider-container px-1 py-3">
+                    <ul class="uk-slider-items uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-small uk-grid">
+                        <li *ngFor="let image of post.images; index as i">
+                            <a href="#">
+                                <div class="card">
+                                    <div class="card-media h-80">
+                                        <div class="card-media-overly"></div>
+                                        <img src="{{url}}post/file/{{image}}" alt="image_{{i}}_{{post.title}}">
+                                        <span class="absolute bg-white px-2 py-1 text-sm rounded-md m-2"> Label</span>
+                                        <button class="bg-red-100 absolute right-2 top-2 p-0.5 px-1.5 rounded-full text-red-500">
+                                            <i class="icon-feather-heart"> </i>
+                                        </button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="-top-3 absolute bg-blue-100 font-medium px-2 py-1 right-2 rounded-full text text-blue-500 text-sm">
+                                            $00.99
+                                        </div>
+                                        <div class="text-xs font-semibold uppercase text-yellow-500">{{ post.category }}</div>
+                                        <div class="ext-lg font-medium mt-1 t truncate"> {{ post.title }} </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
 
+                    <a class="absolute bg-white bottom-1/2 flex items-center justify-center p-2 -left-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="previous"> <i class="icon-feather-chevron-left"></i></a>
+                    <a class="absolute bg-white bottom-1/2 flex items-center justify-center p-2 -right-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="next"> <i class="icon-feather-chevron-right"></i></a>
 
+                </div>
+            </div>
+        </div>
+        <!-- FIN ENTERPRISE POST -->
 
-<!-- ENTERPRISE PLAN  -->
-<div *ngIf="images" class="relative" uk-slider="finite: true">
-    <div class="uk-slider-container px-1 py-3">
-        <ul class="uk-slider-items uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-small uk-grid">
-            <li *ngFor="let image of images">
+        <!-- BUSSINESS POST -->
+        <div *ngIf="post.plan_id === 2">
+            <div class="px-1 py-3">
                 <a href="#">
-                    <div class="card">
-                        <div class="card-media h-80">
-                            <div class="card-media-overly"></div>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXXSHojTZj-16Nap3dzkaejcWqLAgF0lGLbg&usqp=CAU" alt="">
-                            <span class="absolute bg-white px-2 py-1 text-sm rounded-md m-2"> Label</span>
-                            <button class="bg-red-100 absolute right-2 top-2 p-0.5 px-1.5 rounded-full text-red-500">
-                                <i class="icon-feather-heart"> </i>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="-top-3 absolute bg-blue-100 font-medium px-2 py-1 right-2 rounded-full text text-blue-500 text-sm">
-                                $00.99
+                    <div class="card p-2 flex space-x-4 border border-gray-100">
+
+                        <div *ngFor="let image of post.images; index as i" class="w-60 h-60 overflow-hidden rounded-lg">
+                            <div class="card-media h-60">
+                                <img src="{{url}}post/file/{{image}}" alt="image_{{i}}_{{post.title}}">
                             </div>
-                            <div class="text-xs font-semibold uppercase text-yellow-500">CATEGORY</div>
-                            <div class="ext-lg font-medium mt-1 t truncate"> TITLE </div>
+                        </div>
+
+                        <div class="flex-1 pt-2.5 relative">
+                            <div class="text-xs font-semibold uppercase text-yellow-500">{{ post.category }}</div>
+                            <div class="text-lg mt-3 2.5 text-gray-700">{{ post.title }}</div>
+                            <div class="flex items-center space-x-2 text-sm text-gray-400 capitalize">
+                                <div> 15 likes</div>
+                                <div>·</div>
+                                <div> 286 views </div>
+                            </div>
                         </div>
                     </div>
                 </a>
-            </li>
-        </ul>
-
-        <a class="absolute bg-white bottom-1/2 flex items-center justify-center p-2 -left-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="previous"> <i class="icon-feather-chevron-left"></i></a>
-        <a class="absolute bg-white bottom-1/2 flex items-center justify-center p-2 -right-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="next"> <i class="icon-feather-chevron-right"></i></a>
-
-    </div>
-</div>
-<!-- FIN ENTERPRISE POST -->
-
-<!-- BUSSINESS POST -->
-<div class="px-1 py-3">
-    <a href="#">
-        <div class="card p-2 flex space-x-4 border border-gray-100">
-
-            <ng-container *ngIf="images.length === 3">
-                <div *ngFor="let image of images" class="w-40 h-40 overflow-hidden rounded-lg">
-                    <div class="card-media h-40">
-                        <img src="https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/36bdc5ea4443cd8e42f22ec7d3884cbb.jpe"
-                            alt="">
-                    </div>
-                </div>
-            </ng-container>
-
-            <ng-container *ngIf="images.length === 2">
-                <div *ngFor="let image of images" class="w-60 h-40 overflow-hidden rounded-lg">
-                    <div class="card-media h-40">
-                        <img src="https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/36bdc5ea4443cd8e42f22ec7d3884cbb.jpe"
-                            alt="">
-                    </div>
-                </div>
-            </ng-container>
-
-
-            <div class="flex-1 pt-2.5 relative">
-                <div class="text-xs font-semibold uppercase text-yellow-500">CATEGORY </div>
-                <div class="text-lg mt-3 2.5 text-gray-700">TITLE</div>
-                <div class="flex items-center space-x-2 text-sm text-gray-400 capitalize">
-                    <div> 15 likes</div>
-                    <div>·</div>
-                    <div> 286 views </div>
-                </div>
-                <!-- <div class="top-1.5 absolute bg-gray-100 font-semibold px-2.5 py-1 right-1 rounded-full text text-blude-500 text-sm">
-            $12.99
-        </div> -->
             </div>
         </div>
-    </a>
-</div>
-<!-- FIN BUSSINESS POST -->
+        <!-- FIN BUSSINESS POST -->
 
-
-<!-- BASIC POST -->
-<div class="relative" uk-slider="finite: true">
-
-    <div class="uk-slider-container px-1 py-3">
-        <ul
-            class="uk-slider-items uk-child-width-1-5@m uk-child-width-1-3@s uk-child-width-1-2 uk-grid-small uk-grid flex justify-between">
-            <li *ngFor="let image of images">
-                <a href="#">
-                    <div class="card">
+        <!-- BASIC POST -->
+        <div *ngIf="post.plan_id === 1">
+            <div class="flex justify-center px-1 py-3">
+                <div class="card w-5/12">
+                    <a href="#">
                         <div class="card-media h-40">
                             <div class="card-media-overly"></div>
-                            <img src="https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/36bdc5ea4443cd8e42f22ec7d3884cbb.jpe"
-                                alt="">
+                            <div *ngFor="let image of post.images">
+                                <img src="{{url}}post/file/{{image}}" alt="image_{{post.title}}">
+                            </div>
+                            
                             <span class="absolute bg-white px-2 py-1 text-sm rounded-md m-2"> Label</span>
                             <button
                                 class="bg-red-100 absolute right-2 top-2 p-0.5 px-1.5 rounded-full text-red-500">
@@ -101,18 +82,13 @@
                             </button>
                         </div>
                         <div class="card-body">
-                            <div class="text-xs font-semibold uppercase text-yellow-500">CATEGORY</div>
-                            <div class="ext-lg font-medium mt-1 t truncate"> TITLE </div>
+                            <div class="text-xs font-semibold uppercase text-yellow-500">{{ post.category }}</div>
+                            <div class="ext-lg font-medium mt-1 t truncate"> {{ post.title }} </div>
                         </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
-
-        <a class="absolute bg-white bottom-1/2 flex items-center justify-center p-2 -left-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white"
-            href="#" uk-slider-item="previous"> <i class="icon-feather-chevron-left"></i></a>
-        <a class="absolute bg-white bottom-1/2 flex items-center justify-center p-2 -right-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white"
-            href="#" uk-slider-item="next"> <i class="icon-feather-chevron-right"></i></a>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- FIN BASIC POST -->
     </div>
 </div>
-<!-- FIN BASIC POST -->

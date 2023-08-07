@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit{
   public user: User;
   public userLogin: User;
   public response: any;
-
+  
   constructor(
     private _userService: UserService,
     private _router: Router,
@@ -37,12 +37,19 @@ export class AuthComponent implements OnInit{
   }
 
   onSubmitRegister(form: any) {
+    this.response = null;
+    let registerModalBtn = document.getElementById('register-modal-btn');
     this._userService.register(this.user).subscribe(
       response => {
-        console.log(response);
+        if ( response.status === 'success' ) {
+          this.response = response;
+          registerModalBtn?.click();
+        }
       },
       error => {
         console.log(<any> error);
+        this.response = error.error;
+        registerModalBtn?.click();
       }
     );
 
@@ -56,16 +63,12 @@ export class AuthComponent implements OnInit{
         if (response.status === 'success') {
             localStorage.setItem('token', response.token);
             localStorage.setItem('identity', JSON.stringify(response.user));
-
-            // Redireccion a inicio
             this._router.navigate(['']);
         }
       },
       error => {
         console.log(<any>error);
         this.response = error.error;
-        console.log(this.response);
-        
         this.spinner.hide();
       }
     );
@@ -75,11 +78,10 @@ export class AuthComponent implements OnInit{
     this._route.params.subscribe(params => {
       let logout = +params['sure']; // El + del inicio convierte el string en numero 
 
-      if (logout == 1) {
+      if ( logout == 1 ) {
         localStorage.removeItem('identity');
         localStorage.removeItem('token');
 
-        // Redireccion a inicio
         this._router.navigate(['auth']);
       }
     });

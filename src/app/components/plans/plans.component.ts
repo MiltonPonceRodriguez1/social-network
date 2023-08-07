@@ -10,11 +10,12 @@ import { UserService } from "../../services/user.service";
   styleUrls: ['./plans.component.css'],
   providers: [PlanService, UserService]
 })
-export class PlansComponent implements OnInit{
+export class PlansComponent implements OnInit {
   public plans : any;
   public identity: any;
   public token: any;
   public response: any;
+  public selectedPlan: number;
 
   constructor (
     private _planService: PlanService,
@@ -23,6 +24,7 @@ export class PlansComponent implements OnInit{
   ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.selectedPlan = 0;
   }
 
   ngOnInit() {
@@ -40,33 +42,7 @@ export class PlansComponent implements OnInit{
     );
   }
 
-  subscribe(id: number) {
-    this.response = null;
-
-    let data = { plan_id: id, user_id: this.identity.id };
-
-    this._planService.subscribe(this.token, data).subscribe(
-      response => {
-        console.log(response);
-        if (response.status === 'success' || response.status === 'warning') {
-            this.response = {
-              status: response.status,
-              message: response.message
-            }
-        }
-        
-      },
-      error => {
-        console.log(<any>error);
-        if (error.error) {
-          this.response = {
-            status: error.error.status,
-            message: error.error.message
-          }
-        }      
-      }
-    );
-    
+  onSubscribe( id: number ) {
+    this.selectedPlan = id;
   }
-
 }

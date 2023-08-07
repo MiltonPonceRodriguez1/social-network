@@ -1,0 +1,94 @@
+<!-- Create new Paid Post -->
+<div id="post-create" uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar lg:w-4/12 w-full dark:bg-gray-700 dark:text-gray-300 p-0 bg-white shadow-2xl">
+
+        <button class="uk-offcanvas-close absolute" type="button" uk-close></button>
+
+        <!-- notivication header -->
+        <div class="-mb-1 border-b font-semibold px-5 py-5 text-lg">
+            <h4> Configura tu Post </h4>
+        </div>
+
+        <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
+            <div class="p-6 space-y-3 flex-1">
+                <div>
+                    <label> Titulo </label>
+                    <input type="text" class="with-border" name="title" placeholder="Titulo de la publicación" [(ngModel)]="post.title">
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="col-span-3">
+                        <label> Category </label>
+                        <select name="category" id="category" class=" with-border" [(ngModel)]="post.category">
+                            <option value="technology">Tecnologia</option>
+                            <option value="services">Servicios</option>
+                            <option value="health">Salud</option>
+                            <option value="finances">Finanzas</option>
+                            <option value="law">Derecho</option>
+                            <option value="politics">Politica</option>
+                            <option value="other">Otra</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label> Descripción </label>
+                    <textarea name="description" rows="3" class="with-border w-full p-4" id="description"
+                        placeholder="Please describe your product." [(ngModel)]="post.description"></textarea>
+                </div>
+
+                <div uk-form-custom class="w-full py-3">
+                    <div (click)="file0.click()"
+                        class="bg-gray-100 border-2 border-dashed flex flex-col h-32 items-center justify-center relative w-full rounded-lg dark:bg-gray-800 dark:border-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-12">
+                            <path
+                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                        </svg>
+                    </div>
+                    <input type="file" name="file0" #file0 (change)="onChange($event)" multiple />
+                </div>
+
+                <div class="font-semibold text-md">
+                    <h4> Información de Contacto </h4>
+                </div>
+
+                <div>
+                    <label> Telefono </label>
+                    <input type="text" class="with-border" name="phone" placeholder="Introduce un télefono de contacto" [(ngModel)]="post.phone">
+                </div>
+
+                <div>
+                    <label> Email </label>
+                    <input type="text" class="with-border" name="email" placeholder="Introduce un email de contacto" [(ngModel)]="post.email">
+                </div>
+
+                <div>
+                    <label> URL Website Empresa </label>
+                    <input type="text" class="with-border" name="website" placeholder="Introduce la URL del sitio web de tu empresa" [(ngModel)]="post.company">
+                </div>
+                
+
+                <!-- <input type="text" placeholder="Télefono" name="surname" [(ngModel)]="post.phone" class="with-border">
+                <input type="email" placeholder="Email" name="surname" [(ngModel)]="post.email" class="with-border">
+                <input type="text" placeholder="URL Empresa" name="name" [(ngModel)]="post.company" class="with-border"> -->
+                
+
+                <!-- <div>
+                    <label> Titulo </label>
+                    <input type="text" class="with-border" name="title" placeholder="Titulo de la publicación" [(ngModel)]="post.title">
+                </div>
+
+                <div>
+                    <label> Titulo </label>
+                    <input type="text" class="with-border" name="title" placeholder="Titulo de la publicación" [(ngModel)]="post.title">
+                </div> -->
+            </div>
+            <div class="p-5">
+                <button type="submit" class="button w-full uppercase">
+                    Continuar con el pago
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

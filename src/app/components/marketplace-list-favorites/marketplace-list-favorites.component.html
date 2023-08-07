@@ -1,1 +1,9 @@
-<p>marketplace-list-favorites works!</p>
+<div *ngIf="posts && posts.length > 0; else postsUndefined">
+    <p>marketplace-list-favorites works!</p>
+</div>
+
+<ng-template #postsUndefined>
+    <div>
+        <h4>No tienes Post en tus favoritos</h4>
+    </div>
+</ng-template>

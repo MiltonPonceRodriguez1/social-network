@@ -1,99 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 
-import { PaidPostService } from "../../services/paid-post.service";
+import { PostService } from '../../services/post.service';
 import { global } from "../../services/global";
+import { Post } from 'src/app/interfaces/post.interface';
 
 @Component({
   selector: 'app-marketplace',
   templateUrl: './marketplace.component.html',
   styleUrls: ['./marketplace.component.css'],
-  providers: [PaidPostService]
+  providers: [ PostService ]
 })
 export class MarketplaceComponent implements OnInit{
   public url: string;
-  public showCreateButton: boolean;
+  public posts: Array<Post> = [];
 
-  public enterprisePosts : any;
-  public businessPosts : any;
-  public basicPosts : any;
-
-  public posts: any;
-
-  public testPosts: any;
-  
   constructor(
     private spinner: NgxSpinnerService,
-    private _paidPostService: PaidPostService
+    private _postService: PostService,
   ) {
     this.url = global.url;
-    this.showCreateButton = false;
   }
   
   ngOnInit(): void {
     this.spinner.show();
 
-    this._paidPostService.index().subscribe(
+    this._postService.index().subscribe(
       response => {
-        this.testPosts = response.paid_posts;
-
-        console.log(this.testPosts);
-        
-        this.groupByPlan(response.paid_posts);      
-        
-        this.spinner.hide();
+        if ( response.status === 'success' ) {
+          this.posts = response.posts;
+          // setTimeout(() => { this.spinner.hide() }, 2000);
+          this.spinner.hide();
+        }
       },
       error => {
-        console.log(<any>error);
-        
+        console.log(<any> error);
+        setTimeout(() => { this.spinner.hide() }, 2000);
       }
-    )
-    
-  }
-
-  groupByPlan(paid_posts: any): void { 
-    this.posts = {};
-
-    paid_posts.forEach( (x: any) => { 
-      if( !this.posts.hasOwnProperty(x.user_plan.plan_id)){
-        this.posts[x.user_plan.plan_id] = {
-          posts: []
-        }
-      }
-      
-      if (x.images.length > 1) {
-        this.posts[x.user_plan.plan_id].posts.push({
-          title: x.title,
-          images: x.images,
-          category: x.category
-        });
-      } else {
-        this.posts[x.user_plan.plan_id].posts.push({
-          title: x.title,
-          images: x.images[0],
-          category: x.category
-        });
-      }
-    });
-
-    if(this.posts[1]) this.basicPosts = this.posts[1].posts;
-    if(this.posts[2]) this.businessPosts = this.posts[2].posts;
-    if(this.posts[3]) this.enterprisePosts = this.posts[3].posts;
-  }
-
-  onShowCreateButton(flag: boolean) {
-    this.showCreateButton = flag;
-  }
-
-  onNewPaidPost(post: any) {
-    console.log("@Market", post);
-
-    console.log(this.posts[parseInt(post.user_plan.plan_id)]);
-    this.posts[parseInt(post.user_plan.plan_id)].posts.unshift({
-      title: post.title,
-      images: post.images,
-      category: post.category
-    });
+    );
   }
 
 }

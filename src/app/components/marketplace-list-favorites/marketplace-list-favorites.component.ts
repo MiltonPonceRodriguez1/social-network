@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./marketplace-list-favorites.component.css']
 })
 export class MarketplaceListFavoritesComponent {
-
+  public posts: any;
 }

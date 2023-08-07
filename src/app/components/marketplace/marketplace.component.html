@@ -16,7 +16,7 @@
                     </ul>
                 </nav>
             </div>
-            <a *ngIf="showCreateButton" id="post-paid-new" href="#offcanvas-create" uk-toggle class="flex items-center justify-center h-8 lg:px-3 px-2 rounded-md bg-blue-600 text-white space-x-1 absolute right-0 z-10">
+            <a href="#offcanvas-create" uk-toggle class="flex items-center justify-center h-8 lg:px-3 px-2 rounded-md bg-blue-600 text-white space-x-1 absolute right-0 z-10">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
                 </svg>
@@ -25,18 +25,19 @@
 
         </div>
 
-        <div class="uk-switcher lg:mt-8 mt-4" id="marketplace-tab">
+        <div class="uk-switcher lg:mt-4 mt-4" id="marketplace-tab">
             <div>
-                <app-marketplace-list-all />
+                <app-marketplace-list-all [posts]="posts" />
             </div>
-            <div>content 2</div>
+            <div>
+                <app-marketplace-list-favorites />
+            </div>
             <div>content 3</div>
         </div>
 
-        <!-- alerts -->
-        <!-- @include('shared.alerts') -->
 
-        <div *ngIf="enterprisePosts" class="relative" uk-slider="finite: true">
+
+        <!-- <div *ngIf="enterprisePosts" class="relative" uk-slider="finite: true">
             <div class="uk-slider-container px-1 py-3">
                 <ul class="uk-slider-items uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-small uk-grid">
                     <li *ngFor="let enterprisePost of enterprisePosts">
@@ -72,13 +73,6 @@
 
         <div *ngIf="businessPosts">
 
-            <!-- <div class="my-4 flex items-center justify-between border-b pb-3">
-                <div>
-                    <h2 class="text-xl font-semibold"> Business
-                    </h2>
-                </div>
-                <a href="#" class="text-blue-500"> See all </a>
-            </div> -->
     
             <div class="relative -mt-3" uk-slider="finite: true">
                 <div class="uk-slider-container px-1 py-3">
@@ -112,9 +106,9 @@
                                             <div>·</div>
                                             <div> 286 views </div>
                                         </div>
-                                        <!-- <div class="top-1.5 absolute bg-gray-100 font-semibold px-2.5 py-1 right-1 rounded-full text text-blude-500 text-sm">
+                                        <div class="top-1.5 absolute bg-gray-100 font-semibold px-2.5 py-1 right-1 rounded-full text text-blude-500 text-sm">
                                             $12.99
-                                        </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -132,14 +126,7 @@
         <br>
 
         <div *ngIf="basicPosts"> 
-            <!-- <div class="my-4 flex items-center justify-between border-b pb-3">
-                <div>
-                    <h2 class="text-xl font-semibold"> Basic
-                    </h2>
-                </div>
-                <a href="#" class="text-blue-500"> See all </a>
-            </div> -->
-    
+        
             <div class="relative" uk-slider="finite: true">
     
                 <div class="uk-slider-container px-1 py-3">
@@ -156,9 +143,9 @@
                                         </button>
                                     </div>
                                     <div class="card-body">
-                                        <!-- <div class="-top-3 absolute bg-blue-100 font-medium px-2 py-1 right-2 rounded-full text text-blue-500 text-sm">
+                                        <div class="-top-3 absolute bg-blue-100 font-medium px-2 py-1 right-2 rounded-full text text-blue-500 text-sm">
                                             $22.99
-                                        </div> -->
+                                        </div>
                                         <div class="text-xs font-semibold uppercase text-yellow-500">{{ basicPost.category }}</div>
                                         <div class="ext-lg font-medium mt-1 t truncate"> {{ basicPost.title }} </div>
                                     </div>
@@ -171,10 +158,10 @@
                     <a class="absolute bg-white bottom-1/2 flex items-center justify-center p-2 -right-4 rounded-full shadow-md text-xl w-9 z-10 dark:bg-gray-800 dark:text-white" href="#" uk-slider-item="next"> <i class="icon-feather-chevron-right"></i></a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
 
 <!-- Create new Paid Post -->
-<app-paid-post-new (onShowCreateButton)="onShowCreateButton($event)" (onNewPaidPost)="onNewPaidPost($event)"/>
+<app-paid-post-new />

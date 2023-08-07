@@ -8,6 +8,15 @@
         <div class="lg:mt-0 lg:w-96 md:w-1/2 sm:w-2/3 mt-10 w-full">
 
 
+
+            <div *ngIf="response && response.status === 'success'" class="bg-green-500 border mb-4 p-4 relative rounded-md uk-alert" uk-alert="">
+                <button class="uk-alert-close absolute bg-gray-100 bg-opacity-20 m-5 p-0.5 pb-0 right-0 rounded text-gray-200 text-xl top-0">
+                    <i class="icon-feather-x"></i>
+                </button>
+                <h3 class="text-lg font-semibold text-white">Exito!</h3>
+                <p class="text-white text-opacity-75">{{ response.message }}</p>
+            </div>
+
             <div *ngIf="response && response.status === 'error'" class="bg-red-500 border mb-4 p-4 relative rounded-md uk-alert" uk-alert="">
                 <button class="uk-alert-close absolute bg-gray-100 bg-opacity-20 m-5 p-0.5 pb-0 right-0 rounded text-gray-200 text-xl top-0">
                     <i class="icon-feather-x"></i>
@@ -40,7 +49,7 @@
 <!-- This is the modal -->
 <div id="register" uk-modal>
     <div class="uk-modal-dialog uk-modal-body rounded-xl shadow-2xl p-0 lg:w-5/12">
-        <button class="uk-modal-close-default p-3 bg-gray-100 rounded-full m-3" type="button" uk-close></button>
+        <button id="register-modal-btn" class="uk-modal-close-default p-3 bg-gray-100 rounded-full m-3" type="button" uk-close></button>
         <div class="border-b px-7 py-5">
             <div class="lg:text-2xl text-xl font-semibold mb-1"> Registrarte</div>
             <div class="text-base text-gray-600"> Es rápido y fácil.</div>

@@ -51,8 +51,8 @@
                     <div class="font-medium mb-6 text-gray-400 text-base"> {{ plan.description }} </div>
     
                     <div class="border-b-2 border-blue-50 flex items-baseline mb-10 pb-8 space-x-2">
-                        <div class="font-semibold text-4xl text-black">${{ plan.price }}</div>
-                        <div class="font-medium text-gray-400">/Semana</div>
+                        <div class="font-semibold text-4xl text-black">${{ plan.price.toLocaleString("en-US") }}</div>
+                        <!-- <div class="font-medium text-gray-400">/1</div> -->
                     </div>
     
                     
@@ -63,7 +63,7 @@
                         </div>
                     </div>
     
-                    <button type="button" class="bg-blue-50 mt-8 py-3 rounded-md text-blue-500 w-full font-semibold" (click)="subscribe(plan.id)">CONFIGURAR Y PAGAR</button>
+                    <button href="#post-create" uk-toggle type="button" class="bg-blue-50 mt-8 py-3 rounded-md text-blue-500 w-full font-semibold"  (click)="onSubscribe( plan.id )">CONFIGURAR Y PAGAR</button>
     
                 </div>
             </div>
@@ -71,3 +71,5 @@
     </div>
 </div>
 
+
+<app-post-new [plan]="selectedPlan" />

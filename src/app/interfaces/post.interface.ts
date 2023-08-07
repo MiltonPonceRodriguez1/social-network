@@ -1,0 +1,16 @@
+export interface Post {
+    id: number | null,
+    user_id: number,
+    plan_id: number,
+    title: string,
+    category: string,
+    description: string | null,
+    email: string | null,
+    company: string | null,
+    images: Array<File> | null,
+    phone: string | null,
+    active: boolean,
+    limit_date: string | null,
+    created_at: string,
+    updated_at: string,
+}
