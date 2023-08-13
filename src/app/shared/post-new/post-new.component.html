@@ -49,6 +49,33 @@
                     <input type="file" name="file0" #file0 (change)="onChange($event)" multiple />
                 </div>
 
+                <div *ngIf="post.images && post.images.length > 0">
+                    <ul class="max-w-md space-y-2 text-gray-500 list-inside dark:text-gray-400">
+                        <li class="flex items-center" *ngFor="let image of post.images" style="padding-left: 3rem !important;">
+                            <svg class="w-4 h-4 mr-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                            </svg>
+                            {{ image.name }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div *ngIf="response && response.status === 'success'" class="bg-green-500 border mb-4 p-4 relative rounded-md uk-alert" uk-alert="">
+                    <button class="uk-alert-close absolute bg-gray-100 bg-opacity-20 m-5 p-0.5 pb-0 right-0 rounded text-gray-200 text-xl top-0">
+                        <i class="icon-feather-x"></i>
+                    </button>
+                    <h3 class="text-lg font-semibold text-white">Exito!</h3>
+                    <p class="text-white text-opacity-75">{{ response.message }}</p>
+                </div>
+        
+                <div *ngIf="response && response.status === 'error'" class="bg-red-500 border mb-4 p-4 relative rounded-md uk-alert" uk-alert="">
+                    <button class="uk-alert-close absolute bg-gray-100 bg-opacity-20 m-5 p-0.5 pb-0 right-0 rounded text-gray-200 text-xl top-0">
+                        <i class="icon-feather-x"></i>
+                    </button>
+                    <h3 class="text-lg font-semibold text-white">Error</h3>
+                    <p class="text-white text-opacity-75">{{ response.message }}</p>
+                </div>
+
                 <div class="font-semibold text-md">
                     <h4> Información de Contacto </h4>
                 </div>
@@ -67,22 +94,6 @@
                     <label> URL Website Empresa </label>
                     <input type="text" class="with-border" name="website" placeholder="Introduce la URL del sitio web de tu empresa" [(ngModel)]="post.company">
                 </div>
-                
-
-                <!-- <input type="text" placeholder="Télefono" name="surname" [(ngModel)]="post.phone" class="with-border">
-                <input type="email" placeholder="Email" name="surname" [(ngModel)]="post.email" class="with-border">
-                <input type="text" placeholder="URL Empresa" name="name" [(ngModel)]="post.company" class="with-border"> -->
-                
-
-                <!-- <div>
-                    <label> Titulo </label>
-                    <input type="text" class="with-border" name="title" placeholder="Titulo de la publicación" [(ngModel)]="post.title">
-                </div>
-
-                <div>
-                    <label> Titulo </label>
-                    <input type="text" class="with-border" name="title" placeholder="Titulo de la publicación" [(ngModel)]="post.title">
-                </div> -->
             </div>
             <div class="p-5">
                 <button type="submit" class="button w-full uppercase">
