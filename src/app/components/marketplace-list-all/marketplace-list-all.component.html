@@ -7,25 +7,48 @@
                 <div class="uk-slider-container px-1 py-3">
                     <ul class="uk-slider-items uk-child-width-1-1@m uk-child-width-1-1@s uk-child-width-1-1 uk-grid-small uk-grid">
                         <li *ngFor="let image of post.images; index as i">
-                            <a href="#">
-                                <div class="card">
-                                    <div class="card-media h-80">
-                                        <div class="card-media-overly"></div>
-                                        <img src="{{url}}post/file/{{image}}" alt="image_{{i}}_{{post.title}}">
-                                        <span class="absolute bg-white px-2 py-1 text-sm rounded-md m-2"> Label</span>
-                                        <button class="bg-red-100 absolute right-2 top-2 p-0.5 px-1.5 rounded-full text-red-500">
-                                            <i class="icon-feather-heart"> </i>
-                                        </button>
+                            
+                            <div class="card">
+                                <div class="card-media h-80">
+                                    <div class="card-media-overly"></div>
+                                    <div uk-lightbox>
+                                        <a href="{{url}}post/file/{{image}}">
+                                            <img src="{{url}}post/file/{{image}}" alt="{{url}}post/file/{{image}}" class="max-h-96 w-full object-cover">
+                                        </a>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="-top-3 absolute bg-blue-100 font-medium px-2 py-1 right-2 rounded-full text text-blue-500 text-sm">
-                                            $00.99
+
+                                    <!-- <span class="absolute bg-white px-2 py-1 text-sm rounded-md m-2"> Label</span>
+                                    <button class="bg-red-100 absolute right-2 top-2 p-0.5 px-1.5 rounded-full text-red-500">
+                                        <i class="icon-feather-heart"> </i>
+                                    </button> -->
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-lg font-semibold uppercase text-yellow-500">{{ post.category }}</div>
+                                    <div class="text-lg font-medium mt-1 t truncate"> {{ post.title }} </div>
+                                    
+                                    <div class="my-1 flex justify-between">
+                                        <div>
+                                            <span class="text-base text-black-400">Email: </span><span class="text-base text-gray-400">{{ post.email }}</span>
                                         </div>
-                                        <div class="text-xs font-semibold uppercase text-yellow-500">{{ post.category }}</div>
-                                        <div class="ext-lg font-medium mt-1 t truncate"> {{ post.title }} </div>
+
+                                        <div>
+                                            <span class="text-base text-black-400">Télefono: </span><span class="text-base text-gray-400">{{ post.phone }}</span>
+                                        </div>
+
+                                        <div>
+                                            <span class="text-base text-black-400">URL: </span><span class="text-base text-gray-400">
+                                                <a href="{{ post.company }}" target="_blank">{{ post.company }}</a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-1">
+                                        <span class="text-base text-gray-400">{{ post.description }}</span>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
+                            
                         </li>
                     </ul>
 
@@ -40,32 +63,95 @@
         <!-- BUSSINESS POST -->
         <div *ngIf="post.plan_id === 2">
             <div class="px-1 py-3">
-                <a href="#">
-                    <div class="card p-2 flex space-x-4 border border-gray-100">
+                <div class="card p-2 flex space-x-4 border border-gray-100">
 
-                        <div *ngFor="let image of post.images; index as i" class="w-60 h-60 overflow-hidden rounded-lg">
-                            <div class="card-media h-60">
-                                <img src="{{url}}post/file/{{image}}" alt="image_{{i}}_{{post.title}}">
-                            </div>
-                        </div>
-
-                        <div class="flex-1 pt-2.5 relative">
-                            <div class="text-xs font-semibold uppercase text-yellow-500">{{ post.category }}</div>
-                            <div class="text-lg mt-3 2.5 text-gray-700">{{ post.title }}</div>
-                            <div class="flex items-center space-x-2 text-sm text-gray-400 capitalize">
-                                <div> 15 likes</div>
-                                <div>·</div>
-                                <div> 286 views </div>
+                    <div *ngFor="let image of post.images; index as i" class="w-52 h-60 overflow-hidden rounded-lg">
+                        <div class="card-media h-60">
+                            <div uk-lightbox>
+                                <a href="{{url}}post/file/{{image}}">
+                                    <img src="{{url}}post/file/{{image}}" alt="{{url}}post/file/{{image}}" class="max-h-96 w-full object-cover">
+                                </a>
                             </div>
                         </div>
                     </div>
-                </a>
+
+                    <div class="flex-1 pt-2.5 relative">
+                        <div class="text-xl font-semibold uppercase text-yellow-500">{{ post.category }}</div>
+                        <div class="text-lg my-2 text-gray-700">{{ post.title }}</div>
+
+                        <div class="my-1">
+                            <span class="text-sm text-black-400">Email: </span><span class="text-sm text-gray-400">{{ post.email }}</span>
+                        </div>
+
+                        <div class="my-1">
+                            <span class="text-sm text-black-400">Télefono: </span><span class="text-sm text-gray-400">{{ post.phone }}</span>
+                        </div>
+
+                        <div class="my-1">
+                            <span class="text-sm text-black-400">URL: </span><span class="text-sm text-gray-400">
+                                <a href="{{ post.company }}" target="_blank">{{ post.company }}</a>
+                            </span>
+                        </div>
+
+                        <div class="my-1">
+                            <span class="text-sm text-black-400">Descripción: </span><span class="text-sm text-gray-400">{{ post.description }}</span>
+                        </div>
+                        
+                        <!-- <button
+                            class="bg-red-100 absolute right-2 top-2 p-0.5 px-1.5 rounded-full text-red-500">
+                            <i class="icon-feather-heart"> </i>
+                        </button> -->
+                    </div>
+                </div>
             </div>
         </div>
         <!-- FIN BUSSINESS POST -->
 
-        <!-- BASIC POST -->
+        <!-- BASIC POST 2 -->
         <div *ngIf="post.plan_id === 1">
+            <div class="px-1 py-3">
+                <div class="card p-2 flex space-x-4 border border-gray-100">
+
+                    <div *ngFor="let image of post.images; index as i" class="w-80 h-40 overflow-hidden rounded-lg">
+                        <div class="card-media h-60">
+                            <div uk-lightbox>
+                                <a href="{{url}}post/file/{{image}}">
+                                    <img src="{{url}}post/file/{{image}}" alt="{{url}}post/file/{{image}}" class="max-h-96 w-full object-cover">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 relative">
+                        <div class="text-center text-l font-semibold uppercase text-yellow-500">{{ post.category }}</div>
+                        <div class="text-center text-l my-1 text-gray-700">{{ post.title }}</div>
+
+                        <div class="text-center my-1">
+                            <span class="text-sm text-black-400">Email: </span><span class="text-sm text-gray-400">{{ post.email }}</span>
+                        </div>
+
+                        <div class="text-center my-1">
+                            <span class="text-sm text-black-400">Télefono: </span><span class="text-sm text-gray-400">{{ post.phone }}</span>
+                        </div>
+
+                        <div class="text-center my-1">
+                            <span class="text-sm text-black-400">URL: </span><span class="text-sm text-gray-400">
+                                <a href="{{ post.company }}" target="_blank">{{ post.company }}</a>
+                            </span>
+                        </div>
+                        
+                        <!-- <button
+                            class="bg-red-100 absolute right-2 top-2 p-0.5 px-1.5 rounded-full text-red-500">
+                            <i class="icon-feather-heart"> </i>
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN BUSSINESS POST  2 -->
+
+        <!-- BASIC POST -->
+        <!-- <div *ngIf="post.plan_id === 1">
             <div class="flex justify-center px-1 py-3">
                 <div class="card w-5/12">
                     <a href="#">
@@ -88,7 +174,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- FIN BASIC POST -->
     </div>
 </div>

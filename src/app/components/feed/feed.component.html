@@ -14,14 +14,13 @@
             <!-- Banners Mensuales -->
             <app-banners-list *ngIf="bannersPerMonth" [banners]="bannersPerMonth" (onSelectBanner)="onSelectBanner( $event )" />
 
+            <!-- create post -->
+            <app-publication-new class="flex justify-center" (onNewPublication)="onNewPublication( $event )" />
+
             <!--  Feeds  -->
-            <div class="lg:flex lg:space-x-10">
+            <div class="lg:flex lg:space-x-10 flex justify-center">
                 <div class="lg:w-3/4 lg:px-20 space-y-7">
             
-                    <!-- create post -->
-                    <app-publication-new (onNewPublication)="onNewPublication($event)" />
-                    
-
                     <div class="card lg:mx-0 uk-animation-slide-bottom-small" *ngFor="let publication of publications">
                         <!-- post header-->
                         <div class="flex justify-between items-center lg:p-4 p-2.5">
@@ -49,7 +48,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <a href="#"> <i
                                         class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 dark:hover:bg-gray-700"></i>
                                 </a>
@@ -91,7 +90,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div *ngIf="publication.text && publication.text != '' && publication.text != 'null'">

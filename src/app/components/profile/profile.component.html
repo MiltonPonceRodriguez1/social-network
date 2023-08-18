@@ -4,7 +4,7 @@
         <div class="mcontainer">
 
             <!-- Profile cover -->
-            <div class="profile user-profile">
+            <div class="profile user-profile" style="margin-bottom: 1rem !important;">
 
                 <div class="profiles_banner">
                     <!-- PORTADA DE USUARIO -->
@@ -26,9 +26,14 @@
                         <ion-icon name="crop-outline" class="text-xl"></ion-icon>
                         <span> Crop </span>
                     </a> -->
-                        <a *ngIf="user.id === identity.id" href="#" uk-toggle="target: #upload-cover-modal" uk-tooltip="title: Sube tu foto de portada; pos: top" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
+                        <a *ngIf="user.id === identity.id" href="#" uk-toggle="target: #upload-cover-modal" uk-tooltip="title: Sube tu foto de portada; pos: top" class="options-user-profile flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
                             <ion-icon name="create-outline" class="text-xl"></ion-icon>
-                            <span> Edit </span>
+                            <span>Portada</span>
+                        </a>
+
+                        <a *ngIf="user.id === identity.id" href="#" uk-toggle="target: #save-profile-info" uk-tooltip="title: Agrega tu información profesional; pos: right" class="options-user-profile flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
+                            <ion-icon name="create-outline" class="text-xl"></ion-icon>
+                            <span>Información</span>
                         </a>
                     </div>
                 </div>
@@ -63,63 +68,36 @@
                         <h1>{{ user.name }} {{ user.surname }} </h1>
                         <p class="text-center">@{{ user.nickname }}</p>
                     </div>
-
                 </div>
-
-                <div class="flex justify-between lg:border-t border-gray-100 flex-col-reverse lg:flex-row pt-2">
-                    <nav class="responsive-nav pl-3">
-                        <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
-                            <li><a href="#">Empresa</a></li>
-                            <li><a href="#">Archivos adjuntos <span>3</span> </a></li>
-                            <li><a href="#">Contacto </a></li>
-                            <li><a href="#">Website</a></li>
-                            <!-- <li><a href="#">Groups</a></li> -->
-                            <!-- <li><a href="#">Videos</a></li> -->
-                        </ul>
-                    </nav>
-
-                </div>
-
             </div>
 
-            <div class="uk-switcher lg:mt-8 mt-4" id="timeline-tab">
+            
 
-                <!-- Company  -->
-                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
-                    <h2 class="text-xl font-bold"> Empresa: Dokken Company</h2>
-                </div>
+            <!-- Personal Info  -->
+            <div class="card md:p-6 p-2 max-w-3xl mx-auto">
+                <h2 class="text-xl font-bold text-center"> Información Profesional </h2>
+                <p class="my-2">
+                    <span class="text-l font-bold"> Empresa:</span> <span> Dokken Company</span>
+                </p>
+                
+                <span class="text-l font-bold"> Archivos adjuntos</span>
 
-                <!-- Files  -->
-                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
-
-                    <h2 class="text-xl font-bold"> Archivos adjuntos</h2>
-
-
-                    <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4 mt-3">
-                        <div class="card p-2">
-                            <a href="timeline.html">
-                                <img src="assets/images/avatars/avatar-2.jpg"
-                                    class="h-36 object-cover rounded-md shadow-sm w-full">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center mt-6">
-                        <a href="#"
-                            class="bg-white font-semibold my-3 px-6 py-2 rounded-full shadow-md dark:bg-gray-800 dark:text-white">
-                            Load more ..</a>
+                <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4 mt-3">
+                    <div class="card">
+                        <a href="timeline.html">
+                            <img src="assets/images/avatars/avatar-2.jpg"
+                                class="h-36 object-cover rounded-md shadow-sm w-full">
+                        </a>
                     </div>
                 </div>
 
-                <!-- contact  -->
-                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
-                    <h2 class="text-xl font-bold"> Contancto</h2>
-                </div>
+                <p class="my-2">
+                    <span class="text-l font-bold"> Contacto: </span> <span> 5552105257</span>
+                </p>
 
-                <!-- website  -->
-                <div class="card md:p-6 p-2 max-w-3xl mx-auto">
-                    <h2 class="text-xl font-bold"> Website</h2>
-                </div>
+                <p class="my-2">
+                    <span class="text-l font-bold"> Website: </span> <span><a href="https://milton-dev.com" target="_blank">https://milton-dev.com</a></span>
+                </p>
             </div>
         </div>
     </div>
@@ -127,3 +105,5 @@
 
 <!-- Modal User Upload -->
 <app-user-upload (onNewAvatar)="onNewAvatar($event)" (onNewCover)="onNewCover($event)" />
+
+<app-profile-info-modal />

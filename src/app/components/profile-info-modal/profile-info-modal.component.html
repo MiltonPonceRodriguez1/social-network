@@ -1,0 +1,36 @@
+<!-- Upload Cover User modal -->
+<div id="save-profile-info" class="create-post is-story" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
+
+        <div class="text-center py-3 border-b">
+            <h3 class="text-lg font-semibold"> Agrega tu información Profesional </h3>
+            <button id="cover-modal" class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
+        </div>
+
+        <form #coverForm="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <span ><i class=" text-xl text-center flex justify-center">En Desarrollo :) ...</i></span>
+            <!-- <div class="bsolute bottom-0 p-4 space-x-4 w-full">
+                <div (click)="file1.click()" id="file-upload-cover" class="flex bg-gray-50 border border-purple-100 rounded-2xl p-2 shadow-sm items-center file-upload">
+                    <div class="lg:block hidden ml-1"> Selecciona tu portada... </div>
+                    <div class="flex flex-1 items-center lg:justify-end justify-center space-x-2">
+
+                        <svg class="bg-blue-100 h-9 p-1.5 rounded-full text-blue-600 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+
+                        <input type="file" id="cover" name="file1" hidden #file1 (change)="onChangeCover($event)">
+                    </div>
+                </div>
+            </div> -->
+            <div class="flex items-center w-full justify-end border-t p-3">
+                <div class="flex space-x-2">
+                    <button type="submit" class="bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold">
+                        Actualizar
+                    </button>
+                </div>
+
+                <a href="#" type="submit" hidden class="bg-blue-600 flex h-9 items-center justify-center rounded-lg text-white px-12 font-semibold"> Share </a>
+            </div>
+        </form>
+    </div>
+</div>

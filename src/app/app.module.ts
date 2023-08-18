@@ -31,6 +31,7 @@ import { BannerPlansComponent } from './components/banner-plans/banner-plans.com
 import { MarketplaceListAllComponent } from './components/marketplace-list-all/marketplace-list-all.component';
 import { MarketplaceListFavoritesComponent } from './components/marketplace-list-favorites/marketplace-list-favorites.component';
 import { PostNewComponent } from './shared/post-new/post-new.component';
+import { ProfileInfoModalComponent } from './components/profile-info-modal/profile-info-modal.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { PostNewComponent } from './shared/post-new/post-new.component';
     BannerPlansComponent,
     MarketplaceListAllComponent,
     MarketplaceListFavoritesComponent,
-    PostNewComponent
+    PostNewComponent,
+    ProfileInfoModalComponent
   ],
   imports: [
     BrowserModule,
